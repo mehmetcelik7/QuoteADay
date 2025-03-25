@@ -77,7 +77,7 @@ struct BorderedNormalTextView: View {
             .fontWeight(.bold)
             .foregroundColor(.white)
             .multilineTextAlignment(.center)
-            .frame(width: screenWidth * widthProportion)
+//            .frame(width: screenWidth * widthProportion)
             .padding()
             .overlay(
                 RoundedRectangle(cornerRadius: cornerRadius)
