@@ -40,6 +40,22 @@ struct NormalTextView: View {
             .frame(width: screenWidth * widthProportion)
     }
 }
+struct CustomNormalTextView: View {
+    let text: String
+    let chosenFont: String
+    var fontSize: CGFloat = 15
+    
+    let widthProportion: CGFloat = 0.8333333
+    
+    var body: some View {
+        Text(text)
+            .font(Font.custom(chosenFont, size: fontSize))
+            .fontWeight(.bold)
+            .foregroundColor(.white)
+            .multilineTextAlignment(.center)
+            .frame(width: screenWidth * widthProportion)
+    }
+}
 
 struct BorderedBigTextView: View {
    

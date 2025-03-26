@@ -11,23 +11,33 @@ struct SelectImageView: View {
     let quote: String
     let author: String
     @State private var chosenFont: String = "Courier New"
+    var fontSize: CGFloat = 30
     var body: some View {
         ZStack {
             Color.black.ignoresSafeArea()
+           
             
             VStack {
-                Image(img1)
-                    .resizable()
-                    .scaledToFit()
-                    .cornerRadius(20)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 20)
-                            .stroke(.white,lineWidth: 3)
-                    )
-                    .padding()
-                NormalTextView(text: quote)
+                Spacer()
+                ZStack {
+                    Image(img1)
+                        .resizable()
+                        .scaledToFit()
+                        .cornerRadius(20)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 20)
+                                .stroke(.white,lineWidth: 3)
+                        )
+                        .padding()
+                   
+                    CustomNormalTextView(text: quote, chosenFont: chosenFont, fontSize: fontSize)
+                   
+                    
+                }
+                Spacer()
+                SelectFontView(text: "İcardi", chosenFont: $chosenFont)
             }
-            SelectFontView(text: "İcardi", chosenFont: $chosenFont)
+          
  
             
            
