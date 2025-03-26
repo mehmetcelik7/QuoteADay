@@ -21,6 +21,7 @@ struct SelectImageView: View {
            
             
             VStack {
+              
                 Spacer()
                 ZStack {
                     Image(img1)
@@ -34,31 +35,53 @@ struct SelectImageView: View {
                         .overlay(
                             CustomNormalTextView(text: quote, chosenFont: chosenFont, fontSize: fontSize)
                                 .opacity(textOpacity)
+                                .scaleEffect(textScale)
+                            
                                 .padding()
                             .minimumScaleFactor(0.1)
                         )
                         .padding()
                 }
                 Spacer()
-                VStack(alignment: .leading, spacing: 0) {
-                    Text("Text Opacity")
-                        .foregroundColor(.white)
-                        .font(.caption)
-                        .fontWeight(.bold)
-                        .italic()
-                    Slider(value: $textOpacity, in: 0.0...1.0,step: 0.02)
-                }.padding()
-                SelectFontView(text: "İcardi", chosenFont: $chosenFont)
-            }
-          
- 
-            
-           
-              
-               
+                VStack(spacing: 30) {
+                    TitledSlider(
+                        text: "Text Size",
+                        minValue: 0.1,
+                        maxValue: 1.3,
+                        step: 0.05,
+                        value: $textScale
+                    )
+                    TitledSlider(
+                        text: "Text Opacity",
+                        minValue: 0.0,
+                        maxValue: 1.0,
+                        step: 0.02,
+                        value: $textOpacity
+                    )
 
-            
+                    SelectFontView(text: "İcardi", chosenFont: $chosenFont)
+                }.padding(.horizontal)
+            }
         }
+    }
+}
+
+struct TitledSlider: View {
+    let text: String
+    let minValue: CGFloat
+    let maxValue: CGFloat
+    let step: CGFloat
+    @Binding var value: CGFloat
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            Text(text)
+                .foregroundColor(.white)
+                .font(.caption)
+                .fontWeight(.bold)
+                .italic()
+            Slider(value: $value, in: minValue...maxValue,step: step)
+        }.padding()
     }
 }
 
