@@ -10,8 +10,11 @@ import SwiftUI
 struct SelectImageView: View {
     let quote: String
     let author: String
-    @State private var chosenFont: String = "Courier New"
     var fontSize: CGFloat = 30
+
+    @State private var chosenFont: String = "Courier New"
+    @State private var textOpacity: CGFloat = 1.0
+    @State private var textScale: CGFloat = 1.0
     var body: some View {
         ZStack {
             Color.black.ignoresSafeArea()
@@ -30,12 +33,21 @@ struct SelectImageView: View {
                         )
                         .overlay(
                             CustomNormalTextView(text: quote, chosenFont: chosenFont, fontSize: fontSize)
+                                .opacity(textOpacity)
                                 .padding()
                             .minimumScaleFactor(0.1)
                         )
                         .padding()
                 }
                 Spacer()
+                VStack(alignment: .leading, spacing: 0) {
+                    Text("Text Opacity")
+                        .foregroundColor(.white)
+                        .font(.caption)
+                        .fontWeight(.bold)
+                        .italic()
+                    Slider(value: $textOpacity, in: 0.0...1.0,step: 0.02)
+                }.padding()
                 SelectFontView(text: "İcardi", chosenFont: $chosenFont)
             }
           
@@ -57,24 +69,5 @@ Carving shadows across the dew.
 A restless breeze stirs ancient trees,
 Whispering secrets no mortal sees.
 
-I wander the path where flowers bloom,
-In silent hush and twilight gloom.
-The sky, once pale, turns gold at noon,
-As fate aligns with fortune soon.
-
-In hidden valleys, I roam alone,
-Searching for truths I’ve never known.
-A traveler’s heart beats wild and free,
-Yearning for what the soul can see.
-
-Mountains tower, proud and high,
-Their echoes dancing with the sky.
-Each ridge a story, carved by time,
-Etched in stone with quiet rhyme.
-
-At dusk, the heavens flame in red,
-Thoughts of yesterdays fill my head.
-Stars emerge, uncounted, bright—
-Lanterns guiding the wandering night.
 """, author: "Joel Randymar")
 }
